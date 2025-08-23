@@ -10,14 +10,14 @@ using namespace std;
 class ShipCase {
 
 public:
-	string ShipName_case;
-	int ShipHP_case;
-	int ShipDamage_case;
-	int ShipSpeed_case;
-	ShipCase(string name, int HP, int dmg, int sp) : ShipName_case(name), ShipHP_case(HP), ShipDamage_case(dmg), ShipSpeed_case(sp) {}
+	string Name;
+	int HP;
+	int Damage;
+	int Speed;
+	ShipCase(string name, int HP, int dmg, int sp) : Name(name), HP(HP), Damage(dmg), Speed(sp) {}
 	void dispal() {
-		cout << ShipName_case << " was register" << endl;
-		cout << "HP: " << ShipHP_case << " damage: " << ShipDamage_case << " speed: " << ShipSpeed_case << endl;
+		cout << Name << " was register" << endl;
+		cout << "HP: " << HP << " damage: " << Damage << " speed: " << Speed << endl;
 	}
 
 };
@@ -60,22 +60,22 @@ int DrawCase(int Speed1, int Speed2)
 
 void game(int n, int Hp1, int Hp2, int dmg1, int dmg2)
 {
-int RemainsHP1Ship;
-int RemainsHP2Ship;
-RemainsHP1Ship = Hp1;
-RemainsHP2Ship = Hp2;
+int RemainsHP1;
+int RemainsHP2;
+RemainsHP1 = Hp1;
+RemainsHP2 = Hp2;
 if (n == 1)
 	{
-	while (RemainsHP1Ship > 0 and RemainsHP2Ship > 0)
+	while (RemainsHP1 > 0 and RemainsHP2 > 0)
 	{
-		RemainsHP2Ship = RemainsHP2Ship - dmg1;
-		if (RemainsHP2Ship <= 0)
+		RemainsHP2 = RemainsHP2 - dmg1;
+		if (RemainsHP2 <= 0)
 		{
 			cout << "The first Player Win!" << endl;
 			break;
 		}
-		RemainsHP1Ship = RemainsHP1Ship - dmg2;
-		if (RemainsHP1Ship <= 0)
+		RemainsHP1 = RemainsHP1 - dmg2;
+		if (RemainsHP1 <= 0)
 		{
 			cout << "The second Player Win!" << endl;
 			break;
@@ -84,16 +84,16 @@ if (n == 1)
 	}
 if (n == 2)
 {
-	while (RemainsHP1Ship > 0 and RemainsHP2Ship > 0)
+	while (RemainsHP1 > 0 and RemainsHP2 > 0)
 	{
-		RemainsHP1Ship = RemainsHP1Ship - dmg2;
-		if (RemainsHP1Ship <= 0)
+		RemainsHP1 = RemainsHP1 - dmg2;
+		if (RemainsHP1 <= 0)
 		{
 			cout << "The second Player Win!" << endl;
 			break;
 		}
-		RemainsHP2Ship = RemainsHP2Ship - dmg1;
-		if (RemainsHP2Ship <= 0)
+		RemainsHP2 = RemainsHP2 - dmg1;
+		if (RemainsHP2 <= 0)
 		{
 			cout << "The first Player Win!" << endl;
 			break;
@@ -115,25 +115,25 @@ int main()
 	cout << "The first player chooses:" << endl;
 
 
-	string ShipName_main1;
-	int ShipHP_main1, ShipDamage_main1, ShipSpeed_main1;
+	string Name;
+	int HP, Damage, Speed;
 	cout << "Enter the ship`s name:" << endl;
-	cin >> ShipName_main1;
+	cin >> Name;
 	cout << "Enter the ship`s characteristics:" << endl;
-	cin >> ShipHP_main1 >> ShipDamage_main1 >> ShipSpeed_main1;
+	cin >> HP >> Damage >> Speed;
 
 
-	if (ShipHP_main1 <= 0 or ShipDamage_main1 < 0 or ShipSpeed_main1 <= 0)
+	if (HP <= 0 or Damage < 0 or Speed <= 0)
 	{
-		while (ShipHP_main1 <= 0 or ShipDamage_main1 < 0 or ShipSpeed_main1 <= 0)
+		while (HP <= 0 or Damage < 0 or Speed <= 0)
 		{
 			cout << "Error. Enter positive values" << endl;
-			cin >> ShipHP_main1 >> ShipDamage_main1 >> ShipSpeed_main1;
+			cin >> HP >> Damage >> Speed;
 		}
 	}
 
 
-ShipCase Shipcase1(ShipName_main1, ShipHP_main1, ShipDamage_main1, ShipSpeed_main1);
+ShipCase Shipcase1(Name, HP, Damage, Speed);
 Shipcase1.dispal();
 
 
@@ -141,29 +141,29 @@ Shipcase1.dispal();
 	cout << "The second player chooses:" << endl;
 	
 
-	string ShipName_main2;
-	int ShipHP_main2, ShipDamage_main2, ShipSpeed_main2;
+	string Name2;
+	int HP2, Damage2, Speed2;
 	cout << "Enter the ship`s name:" << endl;
-	cin >> ShipName_main2;
+	cin >> Name2;
 	cout << "Enter the ship`s characteristics:" << endl;
-	cin >> ShipHP_main2 >> ShipDamage_main2 >> ShipSpeed_main2;
+	cin >> HP2 >> Damage2 >> Speed2;
 
 
-	if (ShipHP_main2 <= 0 or ShipDamage_main2 < 0 or ShipSpeed_main2 <= 0)
+	if (HP2 <= 0 or Damage2 < 0 or Speed2 <= 0)
 	{
-		while (ShipHP_main2 <= 0 or ShipDamage_main2 < 0 or ShipSpeed_main2 <= 0)
+		while (HP2 <= 0 or Damage2 < 0 or Speed2 <= 0)
 		{
 			cout << "Error. Enter positive values" << endl;;
-			cin >> ShipHP_main2 >> ShipDamage_main2 >> ShipSpeed_main2;
+			cin >> HP2 >> Damage2 >> Speed2;
 		}
 	}
 
-	ShipCase Shipcase2(ShipName_main2, ShipHP_main2, ShipDamage_main2, ShipSpeed_main2);
+	ShipCase Shipcase2(Name2, HP2, Damage2, Speed2);
 	Shipcase2.dispal();
 
 
 
-		game(DrawCase(Shipcase1.ShipSpeed_case, Shipcase2.ShipSpeed_case), Shipcase1.ShipHP_case, Shipcase2.ShipHP_case, Shipcase1.ShipDamage_case, Shipcase2.ShipDamage_case);
+		game(DrawCase(Shipcase1.Speed, Shipcase2.Speed), Shipcase1.HP, Shipcase2.HP, Shipcase1.Damage, Shipcase2.Damage);
 		cout << "Do you want to play again?" << endl;
 		cout << "Write 'Yes' if you want to continue, or something else to finish the game" << endl;
 		cin >> Restart;
