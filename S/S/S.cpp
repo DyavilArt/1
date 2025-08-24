@@ -22,18 +22,7 @@ public:
 
 };
 
-//void Choosen_Func1(int ShipsNumber)
-//{
-//	string ShipName_func;
-//	int ShipHP_func, ShipDamage_func, ShipSpeed_func;
-//	cout << "Enter the ship`s name:" << endl;
-//	cin >> ShipName_func;
-//	cout << "Enter the ship`s characteristics:" << endl;
-//	cin >> ShipHP_func >> ShipDamage_func >> ShipSpeed_func;
-//	
-//
-//
-//}
+
 int DrawCase(int Speed1, int Speed2)
 {
 	int FirstAttack;
@@ -58,23 +47,23 @@ int DrawCase(int Speed1, int Speed2)
 	}
 }
 
-void game(int n, ShipCase, ShipCase)
+void game(int n, ShipCase Gamer1, ShipCase Gamer2)
 {
 	int RemainsHP1;
 	int RemainsHP2;
-	RemainsHP1 = Shipcase1.HP;
-	RemainsHP2 = Shipcase2.HP;
+	RemainsHP1 = Gamer1.HP;
+	RemainsHP2 = Gamer2.HP;
 	if (n == 1)
 	{
 		while (RemainsHP1 > 0 and RemainsHP2 > 0)
 		{
-			RemainsHP2 = RemainsHP2 - Shipcase1.dmg;
+			RemainsHP2 = RemainsHP2 - Gamer1.Damage;
 			if (RemainsHP2 <= 0)
 			{
 				cout << "The first Player Win!" << endl;
 				break;
 			}
-			RemainsHP1 = RemainsHP1 - Shipcase2.dmg;
+			RemainsHP1 = RemainsHP1 - Gamer2.Damage;
 			if (RemainsHP1 <= 0)
 			{
 				cout << "The second Player Win!" << endl;
@@ -86,13 +75,13 @@ void game(int n, ShipCase, ShipCase)
 	{
 		while (RemainsHP1 > 0 and RemainsHP2 > 0)
 		{
-			RemainsHP1 = RemainsHP1 - Shipcase2.dmg;
+			RemainsHP1 = RemainsHP1 - Gamer2.Damage;
 			if (RemainsHP1 <= 0)
 			{
 				cout << "The second Player Win!" << endl;
 				break;
 			}
-			RemainsHP2 = RemainsHP2 - Shipcase1.dmg;
+			RemainsHP2 = RemainsHP2 - Gamer1.Damage;
 			if (RemainsHP2 <= 0)
 			{
 				cout << "The first Player Win!" << endl;
