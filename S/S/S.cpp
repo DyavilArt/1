@@ -7,14 +7,14 @@
 using namespace std;
 
 
-class ShipCase {
+class Ship {
 
 public:
 	string Name;
 	int HP;
 	int Damage;
 	int Speed;
-	ShipCase(string name, int HP, int dmg, int sp) : Name(name), HP(HP), Damage(dmg), Speed(sp) {}
+	Ship(string name, int HP, int dmg, int sp) : Name(name), HP(HP), Damage(dmg), Speed(sp) {}
 	void dispal() {
 		cout << Name << " was register" << endl;
 		cout << "HP: " << HP << " damage: " << Damage << " speed: " << Speed << endl;
@@ -23,7 +23,7 @@ public:
 };
 
 
-int DrawCase(int Speed1, int Speed2)
+int Draw(int Speed1, int Speed2)
 {
 	int FirstAttack;
 	if (Speed1 > Speed2)
@@ -47,7 +47,7 @@ int DrawCase(int Speed1, int Speed2)
 	}
 }
 
-void game(int n, ShipCase Gamer1, ShipCase Gamer2)
+void game(int n, Ship Gamer1, Ship Gamer2)
 {
 	int RemainsHP1;
 	int RemainsHP2;
@@ -71,7 +71,7 @@ void game(int n, ShipCase Gamer1, ShipCase Gamer2)
 			}
 		}
 	}
-	if (n == 2)
+	else
 	{
 		while (RemainsHP1 > 0 and RemainsHP2 > 0)
 		{
@@ -122,8 +122,8 @@ int main()
 		}
 
 
-		ShipCase Shipcase1(Name, HP, Damage, Speed);
-		Shipcase1.dispal();
+		Ship Ship1(Name, HP, Damage, Speed);
+		Ship1.dispal();
 
 
 
@@ -147,12 +147,12 @@ int main()
 			}
 		}
 
-		ShipCase Shipcase2(Name2, HP2, Damage2, Speed2);
-		Shipcase2.dispal();
+		Ship Ship2(Name2, HP2, Damage2, Speed2);
+		Ship2.dispal();
 
 
 
-		game(DrawCase(Shipcase1.Speed, Shipcase2.Speed), Shipcase1, Shipcase2);
+		game(Draw(Ship1.Speed, Ship2.Speed), Ship1, Ship2);
 		cout << "Do you want to play again?" << endl;
 		cout << "Write 'Yes' if you want to continue, or something else to finish the game" << endl;
 		cin >> Restart;
