@@ -23,47 +23,33 @@ public:
 };
 
 
-int Draw(int Speed1, int Speed2)
+int draw(int Speed1, int Speed2)
 {
-	int FirstAttack;
-	if (Speed1 > Speed2)
-	{
-		cout << "The 1 player moves first" << endl;
-		FirstAttack = 1;
-		return 1;
-	}
-	else if (Speed1 == Speed2)
-	{
-		int b = 2;
-		int c;
-		c = rand() % (b)+1;
-		cout << "The " << c << " player moves first" << endl;
-		return c;
-	}
-	else
-	{
-		cout << "The 2 player moves first" << endl;
-		return 2;
-	}
+	int b = 2;
+	int c;
+	int FirstAttack = (Speed1 > Speed2) ? 1 :
+		(Speed1 == Speed2) ? rand() % (b)+1 : 2;
+	cout << "The "<<FirstAttack<<" player moves first" << endl;
+	return FirstAttack;
 }
 
-void game(int n, Ship Gamer1, Ship Gamer2)
+void game(int n, Ship gamer1, Ship gamer2)
 {
 	int RemainsHP1;
 	int RemainsHP2;
-	RemainsHP1 = Gamer1.HP;
-	RemainsHP2 = Gamer2.HP;
+	RemainsHP1 = gamer1.HP;
+	RemainsHP2 = gamer2.HP;
 	if (n == 1)
 	{
 		while (RemainsHP1 > 0 and RemainsHP2 > 0)
 		{
-			RemainsHP2 = RemainsHP2 - Gamer1.Damage;
+			RemainsHP2 = RemainsHP2 - gamer1.Damage;
 			if (RemainsHP2 <= 0)
 			{
 				cout << "The first Player Win!" << endl;
 				break;
 			}
-			RemainsHP1 = RemainsHP1 - Gamer2.Damage;
+			RemainsHP1 = RemainsHP1 - gamer2.Damage;
 			if (RemainsHP1 <= 0)
 			{
 				cout << "The second Player Win!" << endl;
@@ -75,13 +61,13 @@ void game(int n, Ship Gamer1, Ship Gamer2)
 	{
 		while (RemainsHP1 > 0 and RemainsHP2 > 0)
 		{
-			RemainsHP1 = RemainsHP1 - Gamer2.Damage;
+			RemainsHP1 = RemainsHP1 - gamer2.Damage;
 			if (RemainsHP1 <= 0)
 			{
 				cout << "The second Player Win!" << endl;
 				break;
 			}
-			RemainsHP2 = RemainsHP2 - Gamer1.Damage;
+			RemainsHP2 = RemainsHP2 - gamer1.Damage;
 			if (RemainsHP2 <= 0)
 			{
 				cout << "The first Player Win!" << endl;
@@ -122,8 +108,8 @@ int main()
 		}
 
 
-		Ship Ship1(Name, HP, Damage, Speed);
-		Ship1.dispal();
+		Ship ship1(Name, HP, Damage, Speed);
+		ship1.dispal();
 
 
 
@@ -147,12 +133,12 @@ int main()
 			}
 		}
 
-		Ship Ship2(Name2, HP2, Damage2, Speed2);
-		Ship2.dispal();
+		Ship ship2(Name2, HP2, Damage2, Speed2);
+		ship2.dispal();
 
 
 
-		game(Draw(Ship1.Speed, Ship2.Speed), Ship1, Ship2);
+		game(draw(ship1.Speed, ship2.Speed), ship1, ship2);
 		cout << "Do you want to play again?" << endl;
 		cout << "Write 'Yes' if you want to continue, or something else to finish the game" << endl;
 		cin >> Restart;
