@@ -33,48 +33,29 @@ int draw(int Speed1, int Speed2)
 	return FirstAttack;
 }
 
-void game(int n, Ship gamer1, Ship gamer2)
+void game(Ship gamer1, Ship gamer2)
 {
+	
 	int RemainsHP1;
 	int RemainsHP2;
+	int winner;
 	RemainsHP1 = gamer1.HP;
 	RemainsHP2 = gamer2.HP;
-	if (n == 1)
+	while (RemainsHP1 > 0 and RemainsHP2 > 0)
 	{
-		while (RemainsHP1 > 0 and RemainsHP2 > 0)
-		{
-			RemainsHP2 = RemainsHP2 - gamer1.Damage;
-			if (RemainsHP2 <= 0)
-			{
-				cout << "The first Player Win!" << endl;
-				break;
-			}
-			RemainsHP1 = RemainsHP1 - gamer2.Damage;
-			if (RemainsHP1 <= 0)
-			{
-				cout << "The second Player Win!" << endl;
-				break;
-			}
-		}
+		RemainsHP2 = RemainsHP2 - gamer1.Damage;
+		RemainsHP1 = RemainsHP1 - gamer2.Damage;
+	}
+	if (draw(gamer1.Speed, gamer2.Speed) == 1)
+	{
+		winner = (RemainsHP2 <= 0) ? 1 : 2;
 	}
 	else
 	{
-		while (RemainsHP1 > 0 and RemainsHP2 > 0)
-		{
-			RemainsHP1 = RemainsHP1 - gamer2.Damage;
-			if (RemainsHP1 <= 0)
-			{
-				cout << "The second Player Win!" << endl;
-				break;
-			}
-			RemainsHP2 = RemainsHP2 - gamer1.Damage;
-			if (RemainsHP2 <= 0)
-			{
-				cout << "The first Player Win!" << endl;
-				break;
-			}
-		}
+		winner = (RemainsHP2 <= 0) ? 2 : 1;
 	}
+	cout << "The " << winner << " Player Win!" << endl;
+	
 }
 
 int main()
@@ -138,7 +119,7 @@ int main()
 
 
 
-		game(draw(ship1.Speed, ship2.Speed), ship1, ship2);
+		game(ship1, ship2);
 		cout << "Do you want to play again?" << endl;
 		cout << "Write 'Yes' if you want to continue, or something else to finish the game" << endl;
 		cin >> Restart;
